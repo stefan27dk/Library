@@ -1,4 +1,16 @@
 
+
+
+===================================Get file extensiom - .png, .jpg, .txt etc.=============================================================================================================
+Get file extension
+return fname.slice((Math.max(0, fname.lastIndexOf(".")) || Infinity) + 1);
+https://stackoverflow.com/questions/190852/how-can-i-get-file-extensions-with-javascript/12900504#12900504
+
+
+
+
+
+===================================EncodeDecodeBase64=============================================================================================================
 Encode Decode base64 -----------------------------------------------------------------------------------------
 Some say x10 faster then the code bellow this code
 function decodeBase64(base64) {
@@ -18,7 +30,7 @@ function decodeBase64(base64) {
 
 
 
-=============================================================================================
+.........................................................................................................................
 Encoding UTF-8 ⇢ base64
 javascript
 function b64EncodeUnicode(str) {
@@ -55,4 +67,4 @@ b64DecodeUnicode('Cg=='); // "\n"
 https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
 
 
-
+===================================================================================================================
