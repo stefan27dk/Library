@@ -1,6 +1,13 @@
 
 
 
+
+
+===================================Get file extensiom from base 64 file - .png, .jpg, .txt etc.=============================================================================================================
+let imgExtension = base64Data.split(';')[0].split('/')[1];
+https://stackoverflow.com/questions/27886677/determine-image-format-from-base64-data
+
+
 ===================================Get file extensiom - .png, .jpg, .txt etc.=============================================================================================================
 Get file extension
 return fname.slice((Math.max(0, fname.lastIndexOf(".")) || Infinity) + 1);
