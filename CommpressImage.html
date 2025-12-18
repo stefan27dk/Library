@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="file" id="inputImg">
+
+    <img id="img">
+    <script>
+        async function compressImage(blobImg, newHeight, fromat, percent) {
+            // blobImg - an image from the input type="file" that is FileList ex. theInputElementGottenById.files[0] = an blob image
+            // fromat = jpeg; or png; or etc.
+            // percent from 0-100%
+            let bitmap = await createImageBitmap(blobImg);
+            let canvas = document.createElement("canvas");
+            let ctx = canvas.getContext("2d");
+
+            if (newHeight !== '') // New width and height calc. based on the new width
+            {
+                let ratio = (bitmap.width / bitmap.height); // Calc. the ratio
+                let newWidth = newHeight * ratio; // Calc. the new height
+                canvas.width = newWidth;
+                canvas.height = newHeight;
+            }
+            else {
+                canvas.width = bitmap.width; // Original width and height
+                canvas.height = bitmap.height;
+            }
+
+            ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+            let dataUrl = canvas.toDataURL(`image/${fromat}`, percent / 100);
+            return dataUrl;
+        }
+
+        inputImg.addEventListener('change', async (e) => {
+            let img = e.target.files[0];
+            console.log('File Name: ', img.name)
+            console.log('Original Size: ', img.size.toLocaleString())
+
+            let imgCompressed = await compressImage(img, '750', 'webp', 75) // set to 75%
+            let compSize = atob(imgCompressed.split(",")[1]).length;
+            console.log('Compressed Size: ', compSize.toLocaleString())
+            //console.log(imgCompressed)
+
+            document.getElementById('img').src = imgCompressed;
+        })
+
+        // https://stackoverflow.com/questions/14672746/how-to-compress-an-image-via-javascript-in-the-browser
+
+    </script>
+
+</body>
+
+</html>
