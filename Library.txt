@@ -1,4 +1,18 @@
 
+
+====== CSS Counter ================================================================================
+#BlogArchive1 ul.posts {
+  counter-reset: archive-counter; // Initialize the counter // archive-counter is like variable name it can be any name you give it, but the same name needs to be used in the rest of the code, it like variable.
+  list-style-type: none;
+}
+#BlogArchive1 .posts li:before {
+  content: counter(archive-counter) ". "; // Show the count number
+  counter-increment: archive-counter; // Increment the number for every li element
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+
 ======Base64Data to blob to use in canvas ================================================================================
 let img = new Blob([Uint8Array.fromBase64(b64Data)]);
 
